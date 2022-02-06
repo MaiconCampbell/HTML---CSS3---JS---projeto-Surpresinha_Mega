@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
-import './App.css'
+import './App.css';
 
 const App = () => {
   const [qtd, setQtd] =  useState(6);
   const numSorteio = Array(qtd || 6);
   const [sorteio, setSorteio] = useState(numSorteio);
 
-  function gerarNumeroNaoContido() {
+  function gerarNumeroNaoContido(gerador) {
     // Math.random() * (max - min) + min
     const numAleatorio = parseInt(Math.random() * (61 - 1)) + 1;
 
-    return numSorteio.includes(numAleatorio) ?
-    gerarNumeroNaoContido() : 
-    numAleatorio
+    return gerador.includes(numAleatorio) ?
+      gerarNumeroNaoContido(gerador)
+    :
+      numAleatorio
   }
 
   function gerarNumeros() {
-    console.log(qtd)
+    setSorteio([])
+
     const numeros = Array(+qtd)
     .fill(0)
     .reduce(nums => {
-      const novoNumero = gerarNumeroNaoContido()
+      const novoNumero = gerarNumeroNaoContido(nums)
       return [...nums, novoNumero]
     }, [])
     .sort((n1, n2) => n1 - n2)
@@ -48,7 +50,7 @@ const App = () => {
           }
         </div>
 
-          <form action="#">
+        <form action="#">
             <label className='label-form' htmlFor="qtdNumeros">Informar a quantidade de números:</label>
             <input
               name="qtdNumeros"
@@ -59,14 +61,23 @@ const App = () => {
               max={15}
               onChange={e => setQtd(e.target.value)}
             />
-          </form>
+        </form>
 
-          <div className='containerBtns'>
-            <button className='gerarNumero' onClick={() => {setSorteio(gerarNumeros())}}>Gerar Número</button>
-            <button className='limpar' onClick={_ => setSorteio([])}>Limpar</button>
-          </div>
+        <div className='containerBtns'>
+            <button
+              className='gerarNumero'
+              onClick={() => {setSorteio(gerarNumeros())}}>
+                Gerar Número
+            </button>
+
+            <button
+            className='limpar'
+            onClick={_ => setSorteio([])}>
+              Limpar
+            </button>
         </div>
       </div>
+    </div>
     )
 }
 
