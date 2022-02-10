@@ -18,16 +18,25 @@ const App = () => {
 
   function gerarNumeros() {
     setSorteio([])
+    
+    if(qtd === '') { 
+      alert('Informar no campo a quantidade de números: entre 6 e 15')
+      setQtd(6);
+    }
+      const numeros = Array(+qtd)
+      .fill(0)
+      .reduce(nums => {
+        const novoNumero = gerarNumeroNaoContido(nums)
+        return [...nums, novoNumero]
+      }, [])
+      .sort((n1, n2) => n1 - n2)
 
-    const numeros = Array(+qtd)
-    .fill(0)
-    .reduce(nums => {
-      const novoNumero = gerarNumeroNaoContido(nums)
-      return [...nums, novoNumero]
-    }, [])
-    .sort((n1, n2) => n1 - n2)
+      return numeros;
+  }
 
-    return numeros;
+  function EnviarForm(event) {
+    event.preventDefault();
+    setSorteio(gerarNumeros());
   }
 
   return (
@@ -50,32 +59,35 @@ const App = () => {
           }
         </div>
 
-        <form action="#">
-            <label className='label-form' htmlFor="qtdNumeros">Informar a quantidade de números:</label>
+        <form onSubmit={EnviarForm}>
+          <label className='label-form' htmlFor="qtdNumeros">Informar a quantidade de números:</label>
+          <input
+            name="qtdNumeros"
+            id='input'
+            type='number'
+            placeholder='6 a 15'
+            value={qtd}
+            comingsoon={qtd ? 1 : 0}
+            min={6}
+            max={15}
+            onChange={e => setQtd(e.target.value)}
+          />
+
+          <div className='containerBtns'>
             <input
-              name="qtdNumeros"
-              id='input'
-              type='number'
-              value={qtd}
-              min={6}
-              max={15}
-              onChange={e => setQtd(e.target.value)}
-            />
-        </form>
-
-        <div className='containerBtns'>
-            <button
               className='btn gerarNumero'
-              onClick={() => {setSorteio(gerarNumeros())}}>
-                Gerar Número
-            </button>
+              type='submit'
+              value='Gerar Número'
+            />
 
-            <button
-            className='btn limpar'
-            onClick={_ => setSorteio([])}>
-              Limpar
-            </button>
-        </div>
+            <input
+              className='btn limpar'
+              type='button'
+              onClick={_ => setSorteio([])}
+              value="Limpar"
+            />
+          </div>
+        </form>
       </div>
     </div>
     )
