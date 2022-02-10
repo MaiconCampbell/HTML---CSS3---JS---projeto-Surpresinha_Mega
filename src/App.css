@@ -15,6 +15,9 @@ body {
   background: #CCC;
 
   background: linear-gradient(180deg,#FFA17F, #00223E);
+
+  font-family: -apple-system, BlinkMacSystemFont, 
+  "Segoe UI", "Roboto", "Oxygen", sans-serif;
 }
 
 .container {
@@ -37,7 +40,7 @@ body {
 }
 
 .container-sorteio h1 {
-  font-size: 64px;
+  font-size: 54px;
   text-align: center;
   margin: 12px 0;
 }
