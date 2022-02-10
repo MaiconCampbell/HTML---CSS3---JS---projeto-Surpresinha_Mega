@@ -14,7 +14,7 @@ body {
   width: 100vw;
   background: #CCC;
 
-  background: linear-gradient(180deg,#00afb9, #0081a7);
+  background: linear-gradient(180deg,#FFA17F, #00223E);
 }
 
 .container {
@@ -26,7 +26,7 @@ body {
 }
 
 .container-sorteio {
-  background: linear-gradient(180deg, #0081a7, #00afb9);
+  background: linear-gradient(180deg, #00223E, #FFA17F);
 
   display: flex;
   flex-direction: column;
@@ -49,8 +49,9 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: #0065B7;
   border-radius: 6px;
+
+  background: rgb(236, 239, 242);
 
   width: 90%;
   max-width: 940px;
@@ -110,11 +111,10 @@ form {
   align-items: flex-end;
 }
 
-button {
-  background: #1A98B2;
+.btn {
+  text-align: center;
   border-radius: 6px;
 
-  text-align: center;
   color: #FDFCFC;
   font-weight: bold;
   width: 250px;
@@ -123,8 +123,20 @@ button {
   margin-bottom: 6px;
 }
 
-button:hover {
-  background: rgba(26, 152, 178, 0.1);
+.gerarNumero {
+  background: rgb(106, 175, 92);
+}
+
+.gerarNumero:hover {
+  background: rgb(26, 152, 00);
+}
+
+.limpar {
+  background: rgb(245, 60, 65);
+}
+
+.limpar:hover {
+  background: #CB201E;
 }
 
 @media (max-width: 768px) {
@@ -134,5 +146,4 @@ button:hover {
   .container-sorteio {
     max-width: 700px;
   }
-
 }

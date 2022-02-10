@@ -65,13 +65,13 @@ const App = () => {
 
         <div className='containerBtns'>
             <button
-              className='gerarNumero'
+              className='btn gerarNumero'
               onClick={() => {setSorteio(gerarNumeros())}}>
                 Gerar Número
             </button>
 
             <button
-            className='limpar'
+            className='btn limpar'
             onClick={_ => setSorteio([])}>
               Limpar
             </button>
